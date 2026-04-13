@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LOGIN_MUTATION, SIGNUP_MUTATION } from '../graphql/graphql.operations';
+import { LOGIN_QUERY, SIGNUP_MUTATION } from '../graphql/graphql.operations';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -12,10 +12,10 @@ export class AuthService {
 
   constructor(private apollo: Apollo) {}
 
-  login(email: string, password: string) {
-    return this.apollo.mutate({
-      mutation: LOGIN_MUTATION,
-      variables: { email, password }
+  login(usernameOrEmail: string, password: string) {
+    return this.apollo.query({
+      query: LOGIN_QUERY,
+      variables: { usernameOrEmail, password }
     }).pipe(
       map((result: any) => {
         const token = result.data?.login?.token;
@@ -27,10 +27,10 @@ export class AuthService {
     );
   }
 
-  signup(email: string, password: string, name: string) {
+  signup(input: any) {
     return this.apollo.mutate({
       mutation: SIGNUP_MUTATION,
-      variables: { email, password, name }
+      variables: { input }
     });
   }
 

@@ -44,15 +44,6 @@ export class EmployeeEditComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.eid = this.route.snapshot.paramMap.get('id')!;
-
-    this.employeeService.getEmployee(this.eid).subscribe((result: any) => {
-      const emp = result.data.getEmployeeById;
-      this.form.patchValue(emp);
-    });
-  }
-
   onFile(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
