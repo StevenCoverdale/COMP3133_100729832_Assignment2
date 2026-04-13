@@ -1,14 +1,17 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
+import { ApolloModule } from 'apollo-angular';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
-import { provideHttpClient } from '@angular/common/http';
-import { apolloProvider } from './app/graphql/apollo.config';
+import { provideHttpClient, HttpClientModule } from '@angular/common/http';
+import { apolloProviders } from './app/graphql/apollo.config';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    apolloProvider
+    ...apolloProviders,
+    importProvidersFrom(HttpClientModule, ApolloModule)
   ]
 });

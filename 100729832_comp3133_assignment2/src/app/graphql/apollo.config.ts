@@ -1,8 +1,9 @@
 
-import { APOLLO_OPTIONS } from 'apollo-angular';
+import { APOLLO_OPTIONS, provideApollo } from 'apollo-angular';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { HttpHeaders } from '@angular/common/http';
+import { inject } from '@angular/core';
 
 const uri = 'http://localhost:4000/graphql';
 
@@ -18,8 +19,4 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions {
   };
 }
 
-export const apolloProvider = {
-  provide: APOLLO_OPTIONS,
-  useFactory: createApollo,
-  deps: [HttpLink],
-};
+export const apolloProviders = provideApollo(() => createApollo(inject(HttpLink)));
