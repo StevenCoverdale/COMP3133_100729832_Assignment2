@@ -1,1 +1,17 @@
-<p>login works!</p>
+<h2>Login</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <input formControlName="usernameOrEmail" placeholder="Username or Email">
+  <input formControlName="password" type="password" placeholder="Password">
+
+  <button type="submit">Login</button>
+
+  <p *ngIf="error" style="color:red">{{ error }}</p>
+
+</form>
+
+<p>
+  Don't have an account?
+  <a routerLink="/signup">Sign up</a>
+</p>

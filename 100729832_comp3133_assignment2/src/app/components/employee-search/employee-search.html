@@ -1,0 +1,39 @@
+<h2>Search Employees</h2>
+
+<form [formGroup]="form" (ngSubmit)="search()">
+
+  <input formControlName="designation" placeholder="Designation">
+  <input formControlName="department" placeholder="Department">
+
+  <button type="submit">Search</button>
+</form>
+
+<hr>
+
+<div *ngIf="loading">Searching...</div>
+
+<table *ngIf="results.length > 0 && !loading">
+  <thead>
+    <tr>
+      <th>First</th>
+      <th>Last</th>
+      <th>Email</th>
+      <th>Designation</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let e of results">
+      <td>{{ e.first_name }}</td>
+      <td>{{ e.last_name }}</td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.designation }}</td>
+      <td>{{ e.department }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!loading && results.length === 0">
+  No results yet — try searching.
+</p>

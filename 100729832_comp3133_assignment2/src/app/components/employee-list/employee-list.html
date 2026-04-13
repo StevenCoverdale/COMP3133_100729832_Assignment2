@@ -1,27 +1,30 @@
 <div class="page">
   <h2>Employees</h2>
 
-  <button (click)="add()">Add Employee</button>
+  <!-- Action Buttons -->
+  <button routerLink="/employees/add">Add Employee</button>
+  <button routerLink="/employees/search">Search Employees</button>
 
+  <!-- Employee Table -->
   <table *ngIf="!loading">
     <thead>
       <tr>
         <th>First</th>
         <th>Last</th>
         <th>Email</th>
-        <th>Dept</th>
-        <th>Position</th>
+        <th>Designation</th>
+        <th>Department</th>
         <th>Actions</th>
       </tr>
     </thead>
 
     <tbody>
       <tr *ngFor="let e of employees">
-        <td>{{ e.firstName }}</td>
-        <td>{{ e.lastName }}</td>
+        <td>{{ e.first_name }}</td>
+        <td>{{ e.last_name }}</td>
         <td>{{ e.email }}</td>
+        <td>{{ e.designation }}</td>
         <td>{{ e.department }}</td>
-        <td>{{ e.position }}</td>
         <td>
           <button (click)="view(e.id)">View</button>
           <button (click)="edit(e.id)">Edit</button>
