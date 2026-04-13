@@ -1,1 +1,20 @@
-<p>employee-view works!</p>
+<h2>Employee Details</h2>
+
+<div *ngIf="employee">
+
+  <p><strong>First Name:</strong> {{ employee.first_name }}</p>
+  <p><strong>Last Name:</strong> {{ employee.last_name }}</p>
+  <p><strong>Email:</strong> {{ employee.email }}</p>
+  <p><strong>Gender:</strong> {{ employee.gender }}</p>
+  <p><strong>Designation:</strong> {{ employee.designation }}</p>
+  <p><strong>Salary:</strong> {{ employee.salary }}</p>
+  <p><strong>Date of Joining:</strong> {{ employee.date_of_joining | date }}</p>
+  <p><strong>Department:</strong> {{ employee.department }}</p>
+
+  <div *ngIf="employee.employee_photo">
+    <img [src]="employee.employee_photo" width="200">
+  </div>
+
+</div>
+
+<p *ngIf="!employee">Loading...</p>
