@@ -8,14 +8,10 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './employee-search.html',
-  styleUrl: './employee-search.scss'
+  styleUrls: ['./employee-search.scss']
 })
 export class EmployeeSearchComponent {
-
-  form = this.fb.group({
-    designation: [''],
-    department: ['']
-  });
+  form: any;
 
   results: any[] = [];
   loading = false;
@@ -24,6 +20,13 @@ export class EmployeeSearchComponent {
     private fb: FormBuilder,
     private employeeService: EmployeeService
   ) {}
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      designation: [''],
+      department: ['']
+    });
+  }
 
   search() {
     const { designation, department } = this.form.value;

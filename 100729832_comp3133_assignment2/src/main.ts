@@ -3,10 +3,12 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { apolloProvider } from './app/graphql/apollo.config';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    apolloProvider
   ]
 });

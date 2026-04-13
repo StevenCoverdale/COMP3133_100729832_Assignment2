@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ApolloModule } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
 
 import { AppComponent } from './app.component';
 import { apolloProvider } from './graphql/apollo.config';
@@ -15,7 +13,6 @@ import { apolloProvider } from './graphql/apollo.config';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ApolloModule,
     // AppRoutingModule, Material modules, etc.
   ],
   providers: [

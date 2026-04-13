@@ -10,14 +10,10 @@ import { LOGIN_QUERY } from '../../graphql/graphql.operations';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrls: ['./login.scss']
 })
 export class LoginComponent {
-
-  form = this.fb.group({
-    usernameOrEmail: ['', Validators.required],
-    password: ['', Validators.required]
-  });
+  form: any;
 
   error: string | null = null;
 
@@ -26,6 +22,13 @@ export class LoginComponent {
     private apollo: Apollo,
     private router: Router
   ) {}
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      usernameOrEmail: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   submit() {
     if (this.form.invalid) return;

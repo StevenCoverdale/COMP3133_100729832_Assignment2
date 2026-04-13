@@ -9,21 +9,10 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './employee-add.html',
-  styleUrl: './employee-add.scss'
+  styleUrls: ['./employee-add.scss']
 })
 export class EmployeeAddComponent {
-
-  form = this.fb.group({
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
-    email: [''],
-    gender: [''],
-    designation: ['', Validators.required],
-    salary: [null, Validators.required],
-    date_of_joining: ['', Validators.required],
-    department: ['', Validators.required],
-    employee_photo: ['']
-  });
+  form: any;
 
   constructor(
     private fb: FormBuilder,
@@ -31,12 +20,26 @@ export class EmployeeAddComponent {
     private router: Router
   ) {}
 
+  ngOnInit() {
+    this.form = this.fb.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: [''],
+      gender: [''],
+      designation: ['', Validators.required],
+      salary: [null, Validators.required],
+      date_of_joining: ['', Validators.required],
+      department: ['', Validators.required],
+      employee_photo: ['']
+    });
+  }
+
   onFile(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = () => {
-      this.form.patchValue({ employee_photo: reader.result });
+      this.form.patchValue({ employee_photo: String(reader.result) });
     };
 
     reader.readAsDataURL(file);

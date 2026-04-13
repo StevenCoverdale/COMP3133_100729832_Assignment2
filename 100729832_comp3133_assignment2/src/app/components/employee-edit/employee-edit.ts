@@ -9,21 +9,10 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './employee-edit.html',
-  styleUrl: './employee-edit.scss'
+  styleUrls: ['./employee-edit.scss']
 })
 export class EmployeeEditComponent implements OnInit {
-
-  form = this.fb.group({
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
-    email: [''],
-    gender: [''],
-    designation: ['', Validators.required],
-    salary: [0, Validators.required],
-    date_of_joining: ['', Validators.required],
-    department: ['', Validators.required],
-    employee_photo: ['']
-  });
+  form: any;
 
   eid!: string;
 
@@ -33,6 +22,27 @@ export class EmployeeEditComponent implements OnInit {
     private employeeService: EmployeeService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: [''],
+      gender: [''],
+      designation: ['', Validators.required],
+      salary: [0, Validators.required],
+      date_of_joining: ['', Validators.required],
+      department: ['', Validators.required],
+      employee_photo: ['']
+    });
+
+    this.eid = this.route.snapshot.paramMap.get('id')!;
+
+    this.employeeService.getEmployee(this.eid).subscribe((result: any) => {
+      const emp = result.data.getEmployeeById;
+      this.form.patchValue(emp);
+    });
+  }
 
   ngOnInit(): void {
     this.eid = this.route.snapshot.paramMap.get('id')!;
@@ -48,7 +58,7 @@ export class EmployeeEditComponent implements OnInit {
     const reader = new FileReader();
 
     reader.onload = () => {
-      this.form.patchValue({ employee_photo: reader.result });
+      this.form.patchValue({ employee_photo: String(reader.result) });
     };
 
     reader.readAsDataURL(file);

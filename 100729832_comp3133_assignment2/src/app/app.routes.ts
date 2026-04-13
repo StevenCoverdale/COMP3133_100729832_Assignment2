@@ -7,7 +7,7 @@ import { EmployeeAddComponent } from './components/employee-add/employee-add';
 import { EmployeeViewComponent } from './components/employee-view/employee-view';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit';
 import { EmployeeSearchComponent } from './components/employee-search/employee-search';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guards';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

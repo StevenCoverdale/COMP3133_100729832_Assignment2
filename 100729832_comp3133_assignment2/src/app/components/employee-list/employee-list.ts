@@ -8,7 +8,7 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './employee-list.html',
-  styleUrl: './employee-list.scss'
+  styleUrls: ['./employee-list.scss']
 })
 export class EmployeeListComponent implements OnInit {
 

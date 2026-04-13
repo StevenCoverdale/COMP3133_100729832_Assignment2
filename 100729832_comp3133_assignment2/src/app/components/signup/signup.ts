@@ -10,15 +10,10 @@ import { SIGNUP_MUTATION } from '../../graphql/graphql.operations';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './signup.html',
-  styleUrl: './signup.scss'
+  styleUrls: ['./signup.scss']
 })
 export class SignupComponent {
-
-  form = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
-  });
+  form: any;
 
   error: string | null = null;
 
@@ -27,6 +22,14 @@ export class SignupComponent {
     private apollo: Apollo,
     private router: Router
   ) {}
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
   submit() {
     if (this.form.invalid) return;
