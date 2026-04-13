@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import {
   GET_EMPLOYEES_QUERY,
   GET_EMPLOYEE_QUERY,
-  CREATE_EMPLOYEE_MUTATION,
+  ADD_EMPLOYEE_MUTATION,
   UPDATE_EMPLOYEE_MUTATION,
   DELETE_EMPLOYEE_MUTATION,
   SEARCH_EMPLOYEES_QUERY
@@ -25,13 +25,13 @@ export class EmployeeService {
   getEmployee(id: string) {
     return this.apollo.watchQuery({
       query: GET_EMPLOYEE_QUERY,
-      variables: { id }
+      variables: { eid: id }
     }).valueChanges;
   }
 
   createEmployee(input: any) {
     return this.apollo.mutate({
-      mutation: CREATE_EMPLOYEE_MUTATION,
+      mutation: ADD_EMPLOYEE_MUTATION,
       variables: { input },
       refetchQueries: [{ query: GET_EMPLOYEES_QUERY }]
     });
@@ -40,7 +40,7 @@ export class EmployeeService {
   updateEmployee(id: string, input: any) {
     return this.apollo.mutate({
       mutation: UPDATE_EMPLOYEE_MUTATION,
-      variables: { id, input },
+      variables: { eid: id, input },
       refetchQueries: [{ query: GET_EMPLOYEES_QUERY }]
     });
   }
@@ -48,15 +48,15 @@ export class EmployeeService {
   deleteEmployee(id: string) {
     return this.apollo.mutate({
       mutation: DELETE_EMPLOYEE_MUTATION,
-      variables: { id },
+      variables: { eid: id },
       refetchQueries: [{ query: GET_EMPLOYEES_QUERY }]
     });
   }
 
-  searchEmployees(department?: string, position?: string) {
+  searchEmployees(designation?: string, department?: string) {
     return this.apollo.watchQuery({
       query: SEARCH_EMPLOYEES_QUERY,
-      variables: { department, position }
+      variables: { designation, department }
     }).valueChanges;
   }
 }

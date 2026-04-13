@@ -1,11 +1,12 @@
 import { gql } from 'apollo-angular';
 
-export const LOGIN_MUTATION = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+export const LOGIN_QUERY = gql`
+  query Login($usernameOrEmail: String!, $password: String!) {
+    login(usernameOrEmail: $usernameOrEmail, password: $password) {
       token
       user {
         id
+        username
         email
       }
     }
@@ -13,79 +14,92 @@ export const LOGIN_MUTATION = gql`
 `;
 
 export const SIGNUP_MUTATION = gql`
-  mutation Signup($email: String!, $password: String!, $name: String!) {
-    signup(email: $email, password: $password, name: $name) {
-      id
-      email
+  mutation Signup($input: SignupInput!) {
+    signup(input: $input) {
+      token
+      user {
+        id
+        username
+        email
+      }
     }
   }
 `;
 
 export const GET_EMPLOYEES_QUERY = gql`
-  query GetEmployees {
-    employees {
+  query GetAllEmployees {
+    getAllEmployees {
       id
-      firstName
-      lastName
+      first_name
+      last_name
       email
+      gender
+      designation
+      salary
+      date_of_joining
       department
-      position
-      profilePicture
+      employee_photo
     }
   }
 `;
 
 export const GET_EMPLOYEE_QUERY = gql`
-  query GetEmployee($id: ID!) {
-    employee(id: $id) {
+  query GetEmployeeById($eid: ID!) {
+    getEmployeeById(eid: $eid) {
       id
-      firstName
-      lastName
+      first_name
+      last_name
       email
+      gender
+      designation
+      salary
+      date_of_joining
       department
-      position
-      profilePicture
+      employee_photo
     }
   }
 `;
 
-export const CREATE_EMPLOYEE_MUTATION = gql`
-  mutation CreateEmployee($input: EmployeeInput!) {
-    createEmployee(input: $input) {
+export const ADD_EMPLOYEE_MUTATION = gql`
+  mutation AddEmployee($input: EmployeeInput!) {
+    addEmployee(input: $input) {
       id
-      firstName
-      lastName
+      first_name
+      last_name
       email
     }
   }
 `;
 
 export const UPDATE_EMPLOYEE_MUTATION = gql`
-  mutation UpdateEmployee($id: ID!, $input: EmployeeInput!) {
-    updateEmployee(id: $id, input: $input) {
+  mutation UpdateEmployee($eid: ID!, $input: EmployeeInput!) {
+    updateEmployeeById(eid: $eid, input: $input) {
       id
-      firstName
-      lastName
+      first_name
+      last_name
       email
     }
   }
 `;
 
 export const DELETE_EMPLOYEE_MUTATION = gql`
-  mutation DeleteEmployee($id: ID!) {
-    deleteEmployee(id: $id)
+  mutation DeleteEmployee($eid: ID!) {
+    deleteEmployeeById(eid: $eid)
   }
 `;
 
 export const SEARCH_EMPLOYEES_QUERY = gql`
-  query SearchEmployees($department: String, $position: String) {
-    employeesByFilter(department: $department, position: $position) {
+  query SearchEmployees($designation: String, $department: String) {
+    searchEmployeesByDesignationOrDepartment(
+      designation: $designation
+      department: $department
+    ) {
       id
-      firstName
-      lastName
+      first_name
+      last_name
       email
+      designation
       department
-      position
     }
   }
 `;
