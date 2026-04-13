@@ -1,12 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+import { AppComponent } from './app.component';
+import { apolloProvider } from './graphql/apollo.config';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    // your components...
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    ApolloModule,
+    // AppRoutingModule, Material modules, etc.
+  ],
+  providers: [
+    apolloProvider
+  ],
+  bootstrap: [AppComponent]
 })
-export class App {
-  protected readonly title = signal('100729832_comp3133_assignment2');
-}
+export class AppModule {}
