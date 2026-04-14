@@ -1,28 +1,30 @@
-<h2>Add Employee</h2>
+<div class="page">
+  <h2>Add Employee</h2>
 
-<form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="submit()">
 
-  <input formControlName="first_name" placeholder="First Name">
-  <input formControlName="last_name" placeholder="Last Name">
-  <input formControlName="email" placeholder="Email">
+    <input formControlName="first_name" placeholder="First Name">
+    <input formControlName="last_name" placeholder="Last Name">
+    <input formControlName="email" placeholder="Email">
 
-  <select formControlName="gender">
-    <option value="">Select Gender</option>
-    <option>Male</option>
-    <option>Female</option>
-    <option>Other</option>
-  </select>
+    <select formControlName="gender">
+      <option value="">Select Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
 
-  <input formControlName="designation" placeholder="Designation">
-  <input formControlName="salary" type="number" placeholder="Salary">
+    <input formControlName="designation" placeholder="Designation">
+    <input formControlName="salary" type="number" placeholder="Salary">
 
-  <label>Date of Joining</label>
-  <input formControlName="date_of_joining" type="date">
+    <label>Date of Joining</label>
+    <input formControlName="date_of_joining" type="date">
 
-  <input formControlName="department" placeholder="Department">
+    <input formControlName="department" placeholder="Department">
 
-  <label>Employee Photo</label>
-  <input type="file" (change)="onFile($event)">
+    <label>Employee Photo</label>
+    <input type="file" (change)="onFile($event)">
 
-  <button type="submit">Save</button>
-</form>
+    <button type="submit">Save</button>
+  </form>
+</div>

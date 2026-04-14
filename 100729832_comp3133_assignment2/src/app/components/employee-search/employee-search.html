@@ -1,41 +1,43 @@
-<h2>Search Employees</h2>
+<div class="page">
+  <h2>Search Employees</h2>
 
-<form [formGroup]="form" (ngSubmit)="search()">
+  <form [formGroup]="form" (ngSubmit)="search()">
 
-  <input formControlName="designation" placeholder="Designation">
-  <input formControlName="department" placeholder="Department">
+    <input formControlName="designation" placeholder="Designation">
+    <input formControlName="department" placeholder="Department">
 
-  <button type="submit">Search</button>
-</form>
+    <button type="submit">Search</button>
+  </form>
 
-<hr>
+  <hr>
 
-<div *ngIf="loading">Searching...</div>
+  <div *ngIf="loading">Searching...</div>
 
-<div *ngIf="error" style="color:red; margin-top:8px">{{ error }}</div>
+  <div *ngIf="error" style="color:red; margin-top:8px">{{ error }}</div>
 
-<table *ngIf="results.length > 0 && !loading">
-  <thead>
-    <tr>
-      <th>First</th>
-      <th>Last</th>
-      <th>Email</th>
-      <th>Designation</th>
-      <th>Department</th>
-    </tr>
-  </thead>
+  <table *ngIf="results.length > 0 && !loading">
+    <thead>
+      <tr>
+        <th>First</th>
+        <th>Last</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Department</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr *ngFor="let e of results">
-      <td>{{ e.first_name }}</td>
-      <td>{{ e.last_name }}</td>
-      <td>{{ e.email }}</td>
-      <td>{{ e.designation }}</td>
-      <td>{{ e.department }}</td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr *ngFor="let e of results">
+        <td>{{ e.first_name }}</td>
+        <td>{{ e.last_name }}</td>
+        <td>{{ e.email }}</td>
+        <td>{{ e.designation }}</td>
+        <td>{{ e.department }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<p *ngIf="!loading && results.length === 0">
-  No results yet — try searching.
-</p>
+  <p *ngIf="!loading && results.length === 0">
+    No results yet — try searching.
+  </p>
+</div>

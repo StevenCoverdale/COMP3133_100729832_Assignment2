@@ -1,25 +1,27 @@
-<h2>Sign Up</h2>
+<div class="page">
+  <h2>Sign Up</h2>
 
-<form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="submit()">
 
-  <input formControlName="username" placeholder="Username">
-  <input formControlName="email" placeholder="Email">
-  <input formControlName="password" type="password" placeholder="Password">
+    <input formControlName="username" placeholder="Username">
+    <input formControlName="email" placeholder="Email">
+    <input formControlName="password" type="password" placeholder="Password">
 
-  <div style="margin-top:8px">
-    <button type="submit">Create Account</button>
-  </div>
+    <div style="margin-top:8px">
+      <button type="submit">Create Account</button>
+    </div>
 
-  <div *ngIf="form.controls.password?.touched && form.controls.password?.errors" style="color:red; margin-top:8px">
-    <div *ngIf="form.controls.password.errors.required">Password is required</div>
-    <div *ngIf="form.controls.password.errors.minlength">Password must be at least 6 characters</div>
-  </div>
+    <div *ngIf="form.controls.password?.touched && form.controls.password?.errors" style="color:red; margin-top:8px">
+      <div *ngIf="form.controls.password.errors.required">Password is required</div>
+      <div *ngIf="form.controls.password.errors.minlength">Password must be at least 6 characters</div>
+    </div>
 
-  <p *ngIf="error" style="color:red">{{ error }}</p>
+    <p *ngIf="error" style="color:red">{{ error }}</p>
 
-</form>
+  </form>
 
-<p>
-  Already have an account?
-  <a routerLink="/login">Login</a>
-</p>
+  <p>
+    Already have an account?
+    <a routerLink="/login">Login</a>
+  </p>
+</div>

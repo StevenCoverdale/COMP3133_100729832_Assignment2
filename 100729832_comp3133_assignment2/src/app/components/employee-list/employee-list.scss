@@ -1,0 +1,53 @@
+.page {
+	padding: 16px;
+	font-family: Arial, sans-serif;
+}
+
+h2 {
+	margin: 0 0 12px 0;
+	font-size: 1.25rem;
+}
+
+.btn {
+	display: inline-block;
+	padding: 8px 12px;
+	margin-right: 8px;
+	background: #1976d2;
+	color: #fff;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 12px;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+tr:hover {
+	background: #fafafa;
+}
+
+button {
+	padding: 6px 10px;
+	border: none;
+	background: #1976d2;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.btn-delete {
+	background: #d32f2f;
+	border: 1px solid #b71c1c;
+}
+
+.btn-delete:hover {
+	background: #b71c1c;
+}
