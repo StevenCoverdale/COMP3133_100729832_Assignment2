@@ -22,7 +22,9 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeService.getEmployees().subscribe((result: any) => {
-      this.employees = result.data.getAllEmployees;
+      // Guard against unexpected/empty responses on initial load
+      const list = result && result.data && result.data.getAllEmployees ? result.data.getAllEmployees : [];
+      this.employees = list;
       this.loading = false;
     });
   }

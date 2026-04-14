@@ -12,6 +12,8 @@
 
 <div *ngIf="loading">Searching...</div>
 
+<div *ngIf="error" style="color:red; margin-top:8px">{{ error }}</div>
+
 <table *ngIf="results.length > 0 && !loading">
   <thead>
     <tr>

@@ -15,6 +15,7 @@ export class EmployeeSearchComponent {
 
   results: any[] = [];
   loading = false;
+  error: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -33,9 +34,30 @@ export class EmployeeSearchComponent {
 
     this.loading = true;
 
-    this.employeeService.searchEmployees(designation!, department!).subscribe((res: any) => {
-      this.results = res.data.searchEmployeesByDesignationOrDepartment;
-      this.loading = false;
+    this.employeeService.searchEmployees(designation!, department!).subscribe({
+      next: (res: any) => {
+        // Guard against unexpected shapes (network errors or validation errors)
+        if (res && res.data && res.data.searchEmployeesByDesignationOrDepartment) {
+          this.results = res.data.searchEmployeesByDesignationOrDepartment;
+          this.error = null;
+        } else {
+          this.results = [];
+          // try to extract server-side validation errors
+          if (res && res.errors && res.errors.length) {
+            this.error = res.errors.map((e: any) => e.message).join('; ');
+          } else {
+            this.error = 'No results or unexpected server response.';
+          }
+        }
+
+        this.loading = false;
+      },
+      error: (err: any) => {
+        this.loading = false;
+        this.results = [];
+        this.error = 'Search failed. ' + (err.message || 'Server error');
+        console.error('Search error', err);
+      }
     });
   }
 }

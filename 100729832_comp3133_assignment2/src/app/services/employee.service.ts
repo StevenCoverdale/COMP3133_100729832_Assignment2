@@ -18,7 +18,9 @@ export class EmployeeService {
 
   getEmployees() {
     return this.apollo.watchQuery({
-      query: GET_EMPLOYEES_QUERY
+      query: GET_EMPLOYEES_QUERY,
+      // ensure we fetch fresh data on first load instead of relying on cache
+      fetchPolicy: 'network-only'
     }).valueChanges;
   }
 
