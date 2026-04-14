@@ -6,7 +6,14 @@
   <input formControlName="email" placeholder="Email">
   <input formControlName="password" type="password" placeholder="Password">
 
-  <button type="submit">Create Account</button>
+  <div style="margin-top:8px">
+    <button type="submit">Create Account</button>
+  </div>
+
+  <div *ngIf="form.controls.password?.touched && form.controls.password?.errors" style="color:red; margin-top:8px">
+    <div *ngIf="form.controls.password.errors.required">Password is required</div>
+    <div *ngIf="form.controls.password.errors.minlength">Password must be at least 6 characters</div>
+  </div>
 
   <p *ngIf="error" style="color:red">{{ error }}</p>
 
