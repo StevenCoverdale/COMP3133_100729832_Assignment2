@@ -9,8 +9,8 @@ import { apolloProviders } from './app/graphql/apollo.config';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
-      ...apolloProviders,
-      importProvidersFrom(HttpClientModule)
+     provideHttpClient(),
+     ...apolloProviders,
+     importProvidersFrom(HttpClientModule)
   ]
 });
