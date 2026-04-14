@@ -58,7 +58,9 @@ export class EmployeeService {
   searchEmployees(designation?: string, department?: string) {
     return this.apollo.watchQuery({
       query: SEARCH_EMPLOYEES_QUERY,
-      variables: { designation, department }
+      variables: { designation, department },
+      // ensure we fetch fresh search results on first use
+      fetchPolicy: 'network-only'
     }).valueChanges;
   }
 }
