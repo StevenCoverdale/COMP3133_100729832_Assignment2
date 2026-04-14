@@ -19,4 +19,4 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions {
   };
 }
 
-export const apolloProviders = provideApollo(() => createApollo(inject(HttpLink)));
+export const apolloProviders: any[] = provideApollo(() => createApollo(inject(HttpLink))) as any[];

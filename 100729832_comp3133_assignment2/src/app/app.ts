@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { apolloProvider } from './graphql/apollo.config';
+import { apolloProviders } from './graphql/apollo.config';
 
 @NgModule({
   declarations: [
@@ -13,8 +13,6 @@ import { apolloProvider } from './graphql/apollo.config';
     HttpClientModule,
     // AppRoutingModule, Material modules, etc.
   ],
-  providers: [
-    apolloProvider
-  ]
+  providers: apolloProviders
 })
 export class AppModule {}
