@@ -1,15 +1,16 @@
 const { body } = require("express-validator");
 
 exports.signupValidation = [
-  body("input.username")
+  // GraphQL POST bodies put variables under `variables`, so validate accordingly
+  body("variables.input.username")
     .isLength({ min: 3 })
     .withMessage("Username must be at least 3 characters"),
 
-  body("input.email")
+  body("variables.input.email")
     .isEmail()
     .withMessage("Invalid email format"),
 
-  body("input.password")
+  body("variables.input.password")
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters"),
 ];
